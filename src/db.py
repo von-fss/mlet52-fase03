@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from models.teste import Teste
+from models.dim_country import Country
+from models.dim_date import Currency 
+from models.fac_price import Price 
 
 class dbSqlServer(object):
     def __new__(cls):
