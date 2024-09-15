@@ -1,2 +1,6 @@
-# mlet52-fase03
-Pós MLOps fase 03
+# Motivation for this analysis
+
+
+# Sources
+
+https://www.kaggle.com/datasets/sazidthe1/global-inflation-data/data
