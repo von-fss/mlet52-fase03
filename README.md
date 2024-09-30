@@ -9,3 +9,5 @@ https://data.worldbank.org/
 
 Strongest and weakest currencies  
 https://www.madisontrust.com/information-center/visualizations/strongest-and-weakest-currencies-in-world-compared-to-us-dollar/
+
+This project was developed using python 3.10
