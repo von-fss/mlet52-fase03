@@ -11,3 +11,22 @@ Strongest and weakest currencies
 https://www.madisontrust.com/information-center/visualizations/strongest-and-weakest-currencies-in-world-compared-to-us-dollar/
 
 This project was developed using python 3.10
+
+#fuel database - anp
+https://www.kaggle.com/datasets/paulogladson/anp-combustveis
+
+#ptax 
+https://www.kaggle.com/datasets/paulogladson/bacen-dolarptax
+
+
+
+# preço medio do petróleo por ano
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/anuario/anuario-estatistico-2024-dados-abertos
+
+
+
+
+https://www.cepea.esalq.usp.br/br/consultas-ao-banco-de-dados-do-site.aspx
+BOI -> INDICADOR DO BOI GORDO CEPEA/B3
+SOJA -> INDICADOR DA SOJA ESALQ/BM&FBOVESPA - PARANAGUÁ
+01/01/2000 -> 01/10/2024
