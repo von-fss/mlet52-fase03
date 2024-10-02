@@ -10,7 +10,7 @@ class BoiDataFrame:
     def _load_dataframe(self) -> pd.DataFrame:
         logging.info("Loading DataFrame from CSV file.")
         try:
-            df = pd.read_excel(self.file_path, skiprows=3)
+            df = pd.read_excel(self.file_path, skiprows=3, decimal=',')
             logging.info("DataFrame loaded successfully.")
             return df
         except FileNotFoundError:
@@ -23,7 +23,7 @@ class BoiDataFrame:
 
     def _prepare_dataframe(self) -> pd.DataFrame:
         df = self._load_dataframe()
-        df.rename(columns={'Data': 'ano', 'Valor': 'valor'}, inplace=True)
+        df.rename(columns={'Data': 'ano', 'Valor': 'boi'}, inplace=True)
         logging.info("DataFrame prepared successfully.")
         return df        
 

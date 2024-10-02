@@ -10,7 +10,7 @@ class SojaDataFrame:
     def _load_dataframe(self) -> pd.DataFrame:
         logging.info("Loading DataFrame from CSV file.")
         try:
-            df = pd.read_excel(self.file_path, skiprows=3)
+            df = pd.read_excel(self.file_path, skiprows=3, decimal=',')
             logging.info("DataFrame loaded successfully.")
             return df
         except FileNotFoundError:
@@ -24,7 +24,7 @@ class SojaDataFrame:
     def _prepare_dataframe(self) -> pd.DataFrame:
         df = self._load_dataframe()
         df.drop(['À vista US$'], axis=1, inplace=True)
-        df.rename(columns={'Data': 'ano', 'À vista R$': 'valor'}, inplace=True)
+        df.rename(columns={'Data': 'ano', 'À vista R$': 'soja'}, inplace=True)
         logging.info("DataFrame prepared successfully.")
         return df        
 

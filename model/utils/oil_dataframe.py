@@ -10,7 +10,7 @@ class OilDataFrame:
     def _load_dataframe(self) -> pd.DataFrame:
         logging.info("Loading DataFrame from CSV file.")
         try:
-            df = pd.read_csv(self.file_path, sep=';')
+            df = pd.read_csv(self.file_path)
             logging.info("DataFrame loaded successfully.")
             return df
         except FileNotFoundError:
@@ -23,7 +23,9 @@ class OilDataFrame:
 
     def _prepare_dataframe(self) -> pd.DataFrame:
         df = self._load_dataframe()
-        df.rename(columns={'TIPO DE PETRÓLEO': 'tipo', 'PREÇOS MÉDIOS NO MERCADO SPOT DE PETRÓLEO': 'valor', 'ANO': 'ano'}, inplace=True)
+        df.rename(columns={'Oil price - Crude prices since 1861 (current US$)': 'oil', 'Year': 'ano'}, inplace=True)        
+        df.drop(['Code', 'Entity'], axis=1, inplace=True)
+        #df = df.pivot(index=['ano'], columns='tipo', values='valor').reset_index()
         logging.info("DataFrame prepared successfully.")
         return df        
 

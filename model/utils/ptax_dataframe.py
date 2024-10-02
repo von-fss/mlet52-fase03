@@ -29,7 +29,7 @@ class PTaxlDataFrame:
         df.sort_values(by=['ano', 'mes', 'dia'], ascending=[True, True, True], inplace=True)
         df.drop(['cotacaoVenda', 'mes', 'dia'], axis=1, inplace=True)
         df = df.groupby(['ano']).last('cotacaoCompra').reset_index()
-        df.rename(columns={'cotacaoCompra': 'valor'}, inplace=True)
+        df.rename(columns={'cotacaoCompra': 'ptax'}, inplace=True)
         logging.info("DataFrame prepared successfully.")
         return df        
 
