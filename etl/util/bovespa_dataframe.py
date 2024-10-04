@@ -40,10 +40,9 @@ class BovespaDataFrame:
         self._download_file()
         logging.info("Loading DataFrame from CSV file.")
         file_source = r'source\\' + self.file_path + '.zip'
-        print(file_source)
+        
         try:
-            df = pd.read_fwf(file_source, compression='zip', colspecs=self.colspecs, names = self.namespecs, skiprows=1, encoding='latin1')
-            print(df.head())
+            df = pd.read_fwf(file_source, compression='zip', colspecs=self.colspecs, names = self.namespecs, skiprows=1, encoding='latin1')        
             logging.info("DataFrame loaded successfully.")
             return df
         except FileNotFoundError:
@@ -62,7 +61,11 @@ class BovespaDataFrame:
             f.write(r.content)
         logging.info('File saved successfully')
 
-        
+    def _save_data_lake(self, df):
+        logging.info('Start to save pos processed file')
+        df.to_parquet(r'data\\' + self.file_path)
+        logging.info('File saved')
+
 
     def _prepare_dataframe(self) -> pd.DataFrame:
         df = self._load_dataframe()
@@ -73,13 +76,17 @@ class BovespaDataFrame:
         df['maximo'] = (df['maximo'] / 100).astype(float)
         df['minimo'] = (df['minimo'] /100).astype(float)
         df['fechamento'] = (df['fechamento'] / 100).astype(float)
+        #filtro de apenas petrobras
+        df[ df['sigla_acao'] == 'PETR4']        
         #removi os outros preços para reduzir a memória
-        df.drop(['abertura', 'maximo', 'minimo', 'sigla_acao', 'nome_acao', 'qtd', 'vol'], axis=1, inplace=True)        
+        df.drop(['abertura', 'maximo', 'minimo', 'sigla_acao', 'nome_acao', 'qtd', 'vol'], axis=1, inplace=True)
+
         logging.info("DataFrame prepared successfully.")
         return df        
 
     def get_dataframe(self) -> pd.DataFrame:
         logging.info("Getting final DataFrame with B3 data by year.")
         df = self._prepare_dataframe()
+        self._save_data_lake(df)
         logging.info("Final DataFrame retrieved successfully.")        
         return df                
